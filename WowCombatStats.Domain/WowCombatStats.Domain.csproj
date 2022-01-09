@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WowCombatStats.Data\WowCombatStats.Data.csproj" />
+    </ItemGroup>
+
 </Project>

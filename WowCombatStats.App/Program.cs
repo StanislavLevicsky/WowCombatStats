@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WowCombatStats.App.Extensions;
 using WowCombatStats.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DataContext>(opt => opt.UseNpgsql(cfg.GetConnectionString("WowCombatStats")));
 
 var app = builder.Build();
+
+//Migrate
+app.Migrate();
+
+// Seeding Data
+app.SeedingData();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

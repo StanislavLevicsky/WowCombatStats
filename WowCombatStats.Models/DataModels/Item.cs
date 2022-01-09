@@ -8,5 +8,5 @@ public class Item
     public string Name { get; set; }
     public int ItemTypeId { get; set; }
     public int RarityTypeId { get; set; }
-    public string Code { get; set; }
+    public string ItemCode { get; set; }
 }

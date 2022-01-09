@@ -6,5 +6,6 @@ public class File
     public byte[] Data { get; set; }
     public int UserId { get; set; }
     public bool IsParse { get; set; }
-    public DateTime UploadTime { get; set; }
+    public int RaidId { get; set; }
+    public DateTimeOffset UploadTime { get; set; }
 }
