@@ -1,0 +1,53 @@
+﻿@*
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container" id="dark">
+	<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 text">
+		<a class="navbar-brand align-items-center col-md-3 mb-2 mb-md-0 text-muted"
+		   asp-area=""
+		   asp-controller="Home"
+		   asp-action="Index">WowCombatStats</a>
+
+		<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+			<li><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+			<li><a href="#" class="nav-link px-2 text-muted">Raid</a></li>
+			<li><a href="#" class="nav-link px-2 text-muted">Armory</a></li>
+			<li><a href="#" class="nav-link px-2 text-muted">About</a></li>
+		</ul>
+
+		<div class="col-md-3 text-end">
+			@{
+				if (User.Identity.IsAuthenticated)
+				{
+					<a class="btn btn-outline-secondary me-2 dropdown-toggle"
+						id="dropdownUser"
+						data-bs-toggle="dropdown"
+						aria-expanded="false"
+						asp-controller="Home"
+						asp-action="Index">@User.Identity.Name</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownUser">
+						<li>
+							<a class="dropdown-item">Upload</a>
+							<a class="dropdown-item">Settings</a>
+						</li>
+					</ul>
+					<a class="btn btn-outline-secondary me-2"
+					   asp-controller="Auth"
+					   asp-action="Logout">Log Out</a>
+				}
+				else
+				{
+					<a class="btn btn-outline-secondary me-2"
+					   asp-controller="Auth"
+					   asp-action="Login">Login</a>
+					<a class="btn btn-outline-secondary"
+					   asp-controller="Auth"
+					   asp-action="Registration">Sign-up</a>
+				}
+			}
+		</div>
+	</header>
+</div>
+

@@ -3,16 +3,50 @@ html {
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #2D3236;
+    color: #919395;    
+}
+
+a.nav-link:hover {
+    text-decoration: underline;
+}
+
+#dark {
+    background-color: #22272B;
+}
+
+#login-form {
+    border: 1px solid #5E6369;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#create-account {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #5E6369;
+    border-radius: 5px;
+}
+
+form-group {
+    margin-bottom: 10px;
+}
+
+#registration-form {
+    border: 1px solid #5E6369;
+    border-radius: 5px;
+    padding: 20px;
 }

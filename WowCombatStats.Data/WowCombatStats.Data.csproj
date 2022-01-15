@@ -21,10 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Repository" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\WowCombatStats.Models\WowCombatStats.Models.csproj" />
     </ItemGroup>
 

@@ -58,14 +58,29 @@ namespace WowCombatStats.Domain
 
             using (var tran = context.Database.BeginTransaction())
             {
-                context.AddRange(classTypes);
-                context.AddRange(factionTypes);
-                context.AddRange(genderTypes);
-                context.AddRange(itemTypes);
-                context.AddRange(playerStatTypes);
-                context.AddRange(raidTypes);
-                context.AddRange(rarityTypes);
-                context.AddRange(versionTypes);
+                var classesNotDb = classTypes.Where(ct => !context.ClassTypes.Any(dbs => dbs.ClassTypeId == ct.ClassTypeId));
+                context.AddRange(classesNotDb);
+
+                var factionNotDb = factionTypes.Where(ft => !context.FactionTypes.Any(dbs => dbs.FactionTypeId == ft.FactionTypeId));
+                context.AddRange(factionNotDb);
+
+                var genderNotDb = genderTypes.Where(gt => !context.GenderTypes.Any(dbs => dbs.GenderTypeId == gt.GenderTypeId));
+                context.AddRange(genderNotDb);
+
+                var itemNotDb = itemTypes.Where(it => !context.ItemTypes.Any(dbs => dbs.ItemTypeId == it.ItemTypeId));
+                context.AddRange(itemNotDb);
+
+                var playerStatTypeNotDb = playerStatTypes.Where(pst => !context.PlayerStatType.Any(dbs => dbs.PlayerStatTypeId == pst.PlayerStatTypeId));
+                context.AddRange(playerStatTypeNotDb);
+
+                var raidNotDb = raidTypes.Where(rt => !context.RaidTypes.Any(dbs => dbs.RaidTypeId == rt.RaidTypeId));
+                context.AddRange(raidNotDb);
+
+                var rarityNotDb = rarityTypes.Where(rt => !context.RarityTypes.Any(dbs => dbs.RarityTypeId == rt.RarityTypeId));
+                context.AddRange(rarityNotDb);
+
+                var versionNotDb = versionTypes.Where(vt => !context.VersionTypes.Any(dbs => dbs.VersionTypeId == vt.VersionTypeId));
+                context.AddRange(versionNotDb);
 
                 context.SaveChanges();
                 tran.Commit();

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore.Storage;
+using WowCombatStats.Data.Repository;
 
 namespace WowCombatStats.Data;
 
@@ -6,9 +7,15 @@ public class Uow : IUow
 {
     private readonly DataContext _context;
 
+    private readonly UserRepository _userRepository;
+
+    public IUserRepository UserRepository => _userRepository;
+
     public Uow(DataContext context)
     {
         _context = context;
+
+        _userRepository = new UserRepository(context);
     }
 
     public IDbContextTransaction BeginTransaction()
