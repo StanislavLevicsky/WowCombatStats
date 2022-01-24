@@ -29,8 +29,8 @@
 						asp-action="Index">@User.Identity.Name</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownUser">
 						<li>
-							<a class="dropdown-item">Upload</a>
-							<a class="dropdown-item">Settings</a>
+							<a asp-controller="Account" asp-action="Upload" class="dropdown-item">Upload</a>
+							<a asp-controller="Account" asp-action="FileUpload" class="dropdown-item">Settings</a>
 						</li>
 					</ul>
 					<a class="btn btn-outline-secondary me-2"
@@ -42,7 +42,7 @@
 					<a class="btn btn-outline-secondary me-2"
 					   asp-controller="Auth"
 					   asp-action="Login">Login</a>
-					<a class="btn btn-outline-secondary"
+					<a class="btn btn-outline-secondary me-2"
 					   asp-controller="Auth"
 					   asp-action="Registration">Sign-up</a>
 				}
@@ -50,4 +50,3 @@
 		</div>
 	</header>
 </div>
-

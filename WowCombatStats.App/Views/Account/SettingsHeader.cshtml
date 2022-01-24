@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@{
+	var currentAction = ViewContext.RouteData.Values["action"].ToString();
+
+	var fileUploadActive = currentAction == "FileUpload" ? "active" : "";
+	var ChangeActive = currentAction == "ChangePasswordOrEmail" ? "active" : "";
+}
+
+<nav class="navbar navbar-expand-lg rounded">
+	<div class="container-fluid mt-3">
+
+		<div class="collapse navbar-collapse justify-content-md-center">
+			<ul class="navbar-nav">
+				<li class="nav-item me-2">
+					<a class="btn btn-outline-secondary @(fileUploadActive)"
+						asp-controller="Account"
+						asp-action="FileUpload">File Uploads</a>
+				</li>
+				<li class="nav-item me-2">
+					<a class="btn btn-outline-secondary @(ChangeActive)"
+						asp-controller="Account"
+						asp-action="ChangePasswordOrEmail">Change <b>password</b> or <b>email</b></a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</nav>
+
+<hr	/>
+
+@section Scripts {
+<script type="text/javascript" charset="utf-8">
+
+
+
+</script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
