@@ -56,6 +56,12 @@ namespace WowCombatStats.Domain
                 }
             }
 
+            var serverList = new List<Server>
+            {
+                new Server { ServerName = "Darrowshire", VersionTypeId = 2},
+                new Server { ServerName = "Nighthaven(Elysium-project)", VersionTypeId = 2}
+            };
+
             using (var tran = context.Database.BeginTransaction())
             {
                 var classesNotDb = classTypes.Where(ct => !context.ClassTypes.Any(dbs => dbs.ClassTypeId == ct.ClassTypeId));
@@ -81,6 +87,9 @@ namespace WowCombatStats.Domain
 
                 var versionNotDb = versionTypes.Where(vt => !context.VersionTypes.Any(dbs => dbs.VersionTypeId == vt.VersionTypeId));
                 context.AddRange(versionNotDb);
+
+                var serverNotDb = serverList.Where(sl => !context.Servers.Any(dbs => dbs.ServerName == sl.ServerName));
+                context.AddRange(serverNotDb);
 
                 context.SaveChanges();
                 tran.Commit();

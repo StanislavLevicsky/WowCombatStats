@@ -1,12 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowCombatStats.App", "WowCombatStats.App\WowCombatStats.App.csproj", "{9D5DD26A-5204-4F1A-94AB-74BC08C4C45A}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WowCombatStats.App", "WowCombatStats.App\WowCombatStats.App.csproj", "{9D5DD26A-5204-4F1A-94AB-74BC08C4C45A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowCombatStats.Data", "WowCombatStats.Data\WowCombatStats.Data.csproj", "{97CD1C99-0E72-483C-8676-B50C15731CBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WowCombatStats.Data", "WowCombatStats.Data\WowCombatStats.Data.csproj", "{97CD1C99-0E72-483C-8676-B50C15731CBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowCombatStats.Domain", "WowCombatStats.Domain\WowCombatStats.Domain.csproj", "{CF626817-C4BD-4BE6-A30B-28E4BB009720}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WowCombatStats.Domain", "WowCombatStats.Domain\WowCombatStats.Domain.csproj", "{CF626817-C4BD-4BE6-A30B-28E4BB009720}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowCombatStats.Models", "WowCombatStats.Models\WowCombatStats.Models.csproj", "{B976AF5D-6176-4D8C-8493-E75248814F42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WowCombatStats.Models", "WowCombatStats.Models\WowCombatStats.Models.csproj", "{B976AF5D-6176-4D8C-8493-E75248814F42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +33,11 @@ Global
 		{B976AF5D-6176-4D8C-8493-E75248814F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B976AF5D-6176-4D8C-8493-E75248814F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B976AF5D-6176-4D8C-8493-E75248814F42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7041813F-7A8E-4A16-8BF4-D69359D3DB7D}
 	EndGlobalSection
 EndGlobal

@@ -28,11 +28,11 @@ a.nav-link:hover {
     background-color: #22272B;
 }
 
-#login-form {
+/*#login-form {
     border: 1px solid #5E6369;
     border-radius: 5px;
     padding: 20px;
-}
+}*/
 
 #create-account {
     padding: 10px;
@@ -45,7 +45,7 @@ form-group {
     margin-bottom: 10px;
 }
 
-#registration-form {
+#registration-form, #login-form {
     border: 1px solid #5E6369;
     border-radius: 5px;
     padding: 20px;

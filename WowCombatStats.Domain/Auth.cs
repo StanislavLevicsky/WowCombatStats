@@ -22,12 +22,14 @@ namespace WowCombatStats.Domain
 
         public bool Login(LoginVM loginVM)
         {
-            var user = _uow.UserRepository.Get(u => u.UserName == loginVM.Login);
+            var user = _uow.UserRepository.Get(u => u.UserName.ToLower() == loginVM.Login.ToLower());
 
             if (user != null)
             {
                 if (VerifyHash(MD5.Create(), loginVM.Password, user.HashPassword))
                 {
+                    user.Token = Guid.NewGuid();
+                    _uow.SaveChange();
                     return true;
                 }
             }
@@ -45,7 +47,8 @@ namespace WowCombatStats.Domain
                 {
                     UserName = userRegistrationVM.Login,
                     HashPassword = GetHash(MD5.Create(), userRegistrationVM.Password),
-                    Email = userRegistrationVM.Email
+                    Email = userRegistrationVM.Email,
+                    Token = Guid.NewGuid()
                 });
                 _uow.SaveChange();
 
@@ -57,10 +60,12 @@ namespace WowCombatStats.Domain
 
         public ClaimsIdentity GetIdentity(string userName)
         {
+            var user = _uow.UserRepository.Get(u => u.UserName.ToLower() == userName.ToLower());
+
             var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, userName),
-                    new Claim(ClaimTypes.NameIdentifier, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.NameIdentifier, user.Token.ToString()),
                     new Claim(ClaimTypes.Role, userName == "Admin" ? "Admin" : "User")
                 };
 
@@ -68,6 +73,13 @@ namespace WowCombatStats.Domain
                                       "ApplicationCookie",
                                       ClaimsIdentity.DefaultNameClaimType,
                                       ClaimsIdentity.DefaultRoleClaimType);
+        }
+
+        public void Logout(ClaimsPrincipal userIdentity)
+        {
+            var user = _uow.UserRepository.Get(u => u.Token == GetAuthToken(userIdentity));
+            user.Token = null;
+            _uow.SaveChange();
         }
 
         private static string GetHash(HashAlgorithm hashAlgorithm, string input)
@@ -89,6 +101,19 @@ namespace WowCombatStats.Domain
             StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 
             return comparer.Compare(hashOfInput, hash) == 0;
+        }
+
+        public bool LoginIsExist(string login)
+        {
+            if (!_uow.UserRepository.Any(u => u.UserName.ToLower() == login.ToLower()))
+                return true;
+            return false;
+        }
+
+        public Guid GetAuthToken(ClaimsPrincipal userIdentity)
+        {
+            var authToken = Guid.Parse(userIdentity.Claims.FirstOrDefault(c => c.Type == @"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value.ToString());
+            return authToken;
         }
     }
 }

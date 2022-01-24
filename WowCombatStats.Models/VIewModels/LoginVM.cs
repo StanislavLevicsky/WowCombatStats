@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WowCombatStats.Models.VIewModels
+namespace WowCombatStats.Models.ViewModels
 {
     public class LoginVM
     {

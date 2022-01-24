@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WowCombatStats.Data;
@@ -11,9 +12,10 @@ using WowCombatStats.Data;
 namespace WowCombatStats.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220116195413_ChangeFileTable")]
+    partial class ChangeFileTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,9 +94,6 @@ namespace WowCombatStats.Data.Migrations
                     b.Property<byte[]>("Data")
                         .IsRequired()
                         .HasColumnType("bytea");
-
-                    b.Property<Guid>("FileName")
-                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsParse")
                         .HasColumnType("boolean");
@@ -618,9 +617,6 @@ namespace WowCombatStats.Data.Migrations
                     b.Property<string>("HashPassword")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<Guid?>("Token")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("UserName")
                         .IsRequired()

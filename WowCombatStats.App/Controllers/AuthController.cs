@@ -59,6 +59,7 @@ namespace WowCombatStats.App.Controllers
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            _auth.Logout(HttpContext.User);
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
@@ -101,6 +102,12 @@ namespace WowCombatStats.App.Controllers
             }
 
             return View(userRegistrationVM);
+        }
+
+        [HttpGet]
+        public IActionResult LoginIsExist(string login)
+        {
+            return Json(_auth.LoginIsExist(login));
         }
     }
 }
