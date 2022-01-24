@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using WowCombatStats.Domain;
-using WowCombatStats.Models.VIewModels;
+using WowCombatStats.Models.ViewModels;
 
 namespace WowCombatStats.App.Controllers
 {

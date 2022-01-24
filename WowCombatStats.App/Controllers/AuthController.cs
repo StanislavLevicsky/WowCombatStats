@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
 using WowCombatStats.Domain;
-using WowCombatStats.Models.VIewModels;
+using WowCombatStats.Models.ViewModels;
 
 namespace WowCombatStats.App.Controllers
 {

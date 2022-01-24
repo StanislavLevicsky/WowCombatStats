@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WowCombatStats.Data;
-using WowCombatStats.Models.VIewModels;
+using WowCombatStats.Models.ViewModels;
 using System.Security.Cryptography;
 using WowCombatStats.Models.DataModels;
 using System.Security.Claims;
