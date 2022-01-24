@@ -11,7 +11,9 @@ namespace WowCombatStats.Data.Repository
     public interface IRepository<TEntity> where TEntity : class                       
     {
         TEntity Add(TEntity entity);
+        Task<TEntity> AddAsync(TEntity entity);
         void AddRange(IEnumerable<TEntity> entities);
+        bool Any(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> predicate);
         IEnumerable<TEntity> GetAll();
         void Delete(TEntity entity);
@@ -83,6 +85,17 @@ namespace WowCombatStats.Data.Repository
         public void DeleteRange(IEnumerable<TEntity> entities)
         {
             _dbSet.RemoveRange(entities);
+        }
+
+        public bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _dbSet.Any(predicate);
+        }
+
+        public async Task<TEntity> AddAsync(TEntity entity)
+        {
+            await _dbSet.AddAsync(entity);
+            return entity;
         }
     }
 }

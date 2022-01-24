@@ -1,0 +1,162 @@
+﻿@model WowCombatStats.Models.VIewModels.UploadVM
+
+<div class="row justify-content-center">
+	<div class="col-md-4 p-4">
+		<div class="text-center">
+			<h3>Upload File</h3>
+		</div>
+
+		<form asp-controller="Account" asp-action="Upload" enctype="multipart/form-data" method="post" id="registration-form">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+			<div class="form-group mb-2">
+				<label asp-for="ServerId">Server</label>
+				<select asp-for="ServerId" asp-items="Model.Servers" class="form-control" tabindex="1">
+					<option value="">Select Server</option>
+				</select>
+				<span asp-validation-for="ServerId" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-2">
+				<label asp-for="File">File</label>
+				<span asp-validation-for="File" class="text-danger"></span>
+				<input type="file"
+					   id="Files"
+					   class="form-control form-control input-block"
+					   tabindex="2"
+					   asp-for="File"
+					   accept=".zip">
+			</div>
+
+			<div class="progress invisible" id="progress-bar">
+				<div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+					<div id="label" class="control-label">0%</div>
+				</div>
+			</div>
+
+			@if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success text-center">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+			@if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger text-center">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+			<div class="form-group">
+				<div class="row justify-content-between">
+					<div class="col-2">
+						<a class="btn btn-outline-secondary align-left" asp-controller="Home" asp-action="Index">Back</a>
+					</div>
+					<div class="col-auto">
+					</div>
+					<div class="col-auto">
+						<input type="submit" value="Upload" tabindex="3" class="btn col-12 btn-outline-secondary btn-block form-group" onclick="test();">
+					</div>
+				</div>
+			</div>
+			<span id="test"></span>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+<script type="text/javascript" charset="utf-8">
+
+	var mockUploadInterval;
+	var getProgressUploadInterval;
+	var getStatusUploadInterval;
+
+	function MockUploadFile()
+	{
+		var i = 0;
+		mockUploadInterval = setInterval(() => {
+			console.log("Call method  => MockUploadFile() #", i)
+			$.ajax({
+				type: "POST",
+				url: "/Account/SetProgress"
+			})
+			i++;
+		},
+		2000);
+	};
+
+	function GetStatusUploadFile()
+	{
+		var i = 0;
+		getStatusUploadInterval = setInterval(() => {
+			console.log("Call method  => GetStatusUploadFile() #", i)
+			$.ajax({
+				type: "POST",
+				url: "@Url.Action("GetStatus")",
+				dataType: "text",
+				success: function(status){
+					console.log(status);
+					if	(status === "True")
+					{
+						ClearInterval(getProgressUploadInterval);
+						ClearInterval(getStatusUploadInterval);
+					}
+				},
+				error: function(req, status, error){
+
+				}
+			});
+			i++;
+		},
+		1000);
+	}
+
+	function GetProgressUploadFile()
+	{
+		var i = 0;
+		getProgressUploadInterval = setInterval(() => {
+			console.log("Call method  => GetProgressUploadFile() #", i)
+			$.ajax({
+				type: "POST",
+				url: "@Url.Action("GetProgress")",
+				dataType: "text",
+				success: function(progress){
+					document.getElementById("progress").style.width = progress + "%";
+					document.getElementById("label").textContent = progress + "%";
+				},
+				error: function(req, status, error){
+					document.getElementById("label").textContent = error;
+				}
+			});
+			i++;
+		},
+		1000);
+	};
+
+	function ClearInterval(intervalId)
+	{
+		clearInterval(intervalId);
+	}
+
+	function test()
+	{
+		if (document.getElementById("progress-bar").classList.contains('invisible') )
+		{
+			document.getElementById("progress-bar").className = "progress mb-2 visible";
+		}
+		//else
+		//{
+		//	document.getElementById("progress-bar").className = "progress invisible";
+		//}
+
+		//MockUploadFile();
+		GetStatusUploadFile();
+		GetProgressUploadFile();
+	};
+
+</script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

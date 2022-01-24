@@ -6,6 +6,8 @@ namespace WowCombatStats.Data;
 public interface IUow
 {
     IUserRepository UserRepository {  get; }
+    IServerRepository ServerRepository {  get; }
+    IFileRepository FileRepository {  get; }
 
     IDbContextTransaction BeginTransaction();
     Task<IDbContextTransaction> BeginTransactionAsync();

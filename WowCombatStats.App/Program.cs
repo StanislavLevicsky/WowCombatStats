@@ -14,8 +14,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                 .AddCookie(opt => opt.LoginPath = "/Auth/Login");
 
 builder.Services.AddScoped<Auth>();
+builder.Services.AddScoped<AccountBuilder>();
 
 var app = builder.Build();
+
 
 //Migrate
 app.Migrate();

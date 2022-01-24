@@ -21,4 +21,8 @@
       <ProjectReference Include="..\WowCombatStats.Domain\WowCombatStats.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\UploadFile\" />
+    </ItemGroup>
+
 </Project>
