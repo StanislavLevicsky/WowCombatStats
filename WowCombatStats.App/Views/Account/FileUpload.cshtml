@@ -1,11 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model WowCombatStats.Models.ViewModels.UploadFileListVM
 
 @{
-    await Html.RenderPartialAsync("SettingsHeader");
+	await Html.RenderPartialAsync("SettingsHeader");
 }
 
-test file uploads
+@foreach (var file in Model.FileList)
+	{
+	<div class="d-flex text-muted pt-3">
+	<svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="64" height="64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 64x64" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#ff9900"></rect><text x="30%" y="50%" fill="#ff0000" dy=".2em">MC</text></svg>
+	<div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+	<div class="d-flex justify-content-between">
+	<strong class="text-gray-dark">@file.FileName</strong>
+	<a href="#">Delete</a>
+	</div>
+	<span class="d-block">parse: @file.IsParse</span>
+	</div>
+	</div>
+	}
+
+@section Scripts {
+<script type="text/javascript" charset="utf-8">
+
+
+
+</script>
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

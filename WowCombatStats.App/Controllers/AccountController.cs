@@ -115,7 +115,8 @@ namespace WowCombatStats.App.Controllers
         [HttpGet]
         public async Task<IActionResult> FileUpload()
         {
-            return View();
+            var userToken = _auth.GetAuthToken(HttpContext.User);
+            return View(_accountBuilder.GetFileList(userToken));
         }
 
         [HttpGet]

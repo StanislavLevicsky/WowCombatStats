@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WowCombatStats.Data;
 using WowCombatStats.Models.DataModels;
+using WowCombatStats.Models.ViewModels;
 
 namespace WowCombatStats.Domain
 {
@@ -57,9 +58,13 @@ namespace WowCombatStats.Domain
         public string GetPath(Guid fileName)
         {
             Directory.CreateDirectory(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadFile"));
-            //var fileData = _uow.FileRepository.Get(f => f.FileId == 2).Data;
             return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadFile", fileName.ToString());
-            //System.IO.File.WriteAllBytes(path, fileData);
+        }
+
+        public UploadFileListVM GetFileList(Guid userToken)
+        {
+            var userId = _uow.UserRepository.Get(u => u.Token == userToken).UserId;
+            return new UploadFileListVM { FileList = _uow.FileRepository.GetAll(f => f.UserId == userId).ToList() };
         }
     }
 }

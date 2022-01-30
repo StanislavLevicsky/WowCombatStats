@@ -11,40 +11,40 @@
 		   asp-action="Index">WowCombatStats</a>
 
 		<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-			<li><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-			<li><a href="#" class="nav-link px-2 text-muted">Raid</a></li>
-			<li><a href="#" class="nav-link px-2 text-muted">Armory</a></li>
-			<li><a href="#" class="nav-link px-2 text-muted">About</a></li>
+			<li><a href="#" class="nav-link text-muted"><i class="ri-home-3-line"></i>  Home</a></li>
+			<li><a href="#" class="nav-link text-muted"><i class="ri-sword-line"></i>  Raid</a></li>
+			<li><a href="#" class="nav-link text-muted"><i class="ri-shield-line"></i>  Armory</a></li>
+			<li><a href="#" class="nav-link text-muted"><i class="ri-question-answer-line"></i>  About</a></li>
 		</ul>
 
 		<div class="col-md-3 text-end">
 			@{
 				if (User.Identity.IsAuthenticated)
 				{
-					<a class="btn btn-outline-secondary me-2 dropdown-toggle"
+					<a  class="btn btn-outline-secondary me-2 dropdown-toggle"
 						id="dropdownUser"
 						data-bs-toggle="dropdown"
 						aria-expanded="false"
 						asp-controller="Home"
-						asp-action="Index">@User.Identity.Name</a>
+						asp-action="Index"><i class="ri-user-follow-line"></i> @User.Identity.Name</a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownUser">
 						<li>
-							<a asp-controller="Account" asp-action="Upload" class="dropdown-item">Upload</a>
-							<a asp-controller="Account" asp-action="FileUpload" class="dropdown-item">Settings</a>
+							<a asp-controller="Account" asp-action="Upload" class="dropdown-item justify-content-between"><i class="ri-upload-cloud-2-line"></i>  Upload</a>
+							<a asp-controller="Account" asp-action="FileUpload" class="dropdown-item"><i class="ri-user-settings-line"></i>  Settings</a>
 						</li>
 					</ul>
 					<a class="btn btn-outline-secondary me-2"
 					   asp-controller="Auth"
-					   asp-action="Logout">Log Out</a>
+					   asp-action="Logout"><i class="ri-logout-box-r-line"></i> Log Out</a>
 				}
 				else
 				{
 					<a class="btn btn-outline-secondary me-2"
 					   asp-controller="Auth"
-					   asp-action="Login">Login</a>
+					   asp-action="Login"><i class="ri-login-box-line"></i> Login</a>
 					<a class="btn btn-outline-secondary me-2"
 					   asp-controller="Auth"
-					   asp-action="Registration">Sign-up</a>
+					   asp-action="Registration"><i class="ri-group-line"></i> Sign-up</a>
 				}
 			}
 		</div>

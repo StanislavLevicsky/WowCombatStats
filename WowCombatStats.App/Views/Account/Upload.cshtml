@@ -5,27 +5,33 @@
 		<div class="text-center">
 			<h3>Upload File</h3>
 		</div>
-
+		
 		<form asp-controller="Account" asp-action="Upload" enctype="multipart/form-data" method="post" id="registration-form">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 			<div class="form-group mb-2">
-				<label asp-for="ServerId">Server</label>
-				<select asp-for="ServerId" asp-items="Model.Servers" class="form-control" tabindex="1">
-					<option value="">Select Server</option>
-				</select>
+				@*<label asp-for="ServerId">Server</label>*@
+				<div class="input-group">
+					<span class="input-group-text"><i class="ri-server-line"></i></span>
+					<select asp-for="ServerId" asp-items="Model.Servers" class="form-control" tabindex="1">
+						<option value="">Select Server</option>
+					</select>
+				</div>
 				<span asp-validation-for="ServerId" class="text-danger"></span>
 			</div>
 
 			<div class="form-group mb-2">
-				<label asp-for="File">File</label>
+				@*<label asp-for="File">File</label>*@
+				<div class="input-group">
+					<span class="input-group-text"><i class="ri-folder-zip-line"></i></span>
+					<input type="file"
+						   id="Files"
+						   class="form-control form-control input-block"
+						   tabindex="2"
+						   asp-for="File"
+						   accept=".zip">
+				</div>
 				<span asp-validation-for="File" class="text-danger"></span>
-				<input type="file"
-					   id="Files"
-					   class="form-control form-control input-block"
-					   tabindex="2"
-					   asp-for="File"
-					   accept=".zip">
 			</div>
 
 			<div class="progress invisible" id="progress-bar">
@@ -56,11 +62,10 @@
 					<div class="col-auto">
 					</div>
 					<div class="col-auto">
-						<input type="submit" value="Upload" tabindex="3" class="btn col-12 btn-outline-secondary btn-block form-group" onclick="test();">
+						<button type="submit" @*value="Upload"*@ tabindex="3" class="btn col-12 btn-outline-secondary btn-block form-group" onclick="test();"><i class="ri-upload-cloud-2-line"></i>  Upload</button>
 					</div>
 				</div>
 			</div>
-			<span id="test"></span>
 		</form>
 	</div>
 </div>

@@ -10,26 +10,34 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group mb-4">
-                <label asp-for="Login" class="control-label"></label>
-                <input asp-for="Login" class="form-control" />
+                <div class="input-group">
+                    <span class="input-group-text"><i class="ri-shield-user-line"></i></span>
+                    <input asp-for="Login" class="form-control" placeholder="Login"/>
+                </div>
                 <span asp-validation-for="Login" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-2">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" type="password" class="form-control" />
+                <div class="input-group">
+                    <span class="input-group-text"><i class="ri-lock-password-line"></i></span>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Password"/>
+                </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-4">
-                <label asp-for="PasswordConfirm" class="control-label">Confirm Password</label>
-                <input asp-for="PasswordConfirm" type="password" class="form-control" />
+                <div class="input-group">
+                    <span class="input-group-text"><i class="ri-lock-password-line"></i></span>
+                    <input asp-for="PasswordConfirm" type="password" class="form-control" placeholder="Confirm Password"/>
+                </div>
                 <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-4">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <div class="input-group">
+                    <span class="input-group-text"><i class="ri-mail-lock-line"></i></span>
+                    <input asp-for="Email" class="form-control" placeholder="Email"/>
+                </div>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
